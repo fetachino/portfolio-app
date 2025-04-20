@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Smith - Full Stack Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skills-card {
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+            margin-left: -1px;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline:before {
+                left: 20px;
+            }
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-badge {
+            position: absolute;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: -20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            z-index: 100;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-badge {
+                left: 20px;
+                margin-left: 0;
+            }
+        }
+        
+        .floating-action-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        
+        .custom-offcanvas {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">JS Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 mb-4">John Smith</h1>
+                    <h2 class="h3 mb-4">Full Stack Developer</h2>
+                    <p class="lead mb-5">Passionate about creating elegant solutions to complex problems. Specializing in modern web technologies and user-centric design.</p>
+                    <button class="btn btn-lg btn-outline-light me-3" data-bs-toggle="modal" data-bs-target="#contactModal">Get In Touch</button>
+                    <button class="btn btn-lg btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download my resume">
+                        <i class="bi bi-download me-2"></i>Resume
+                    </button>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="/api/placeholder/600/600" class="img-fluid rounded-circle shadow-lg" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <h2 class="text-center mb-5">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead text-center">I'm a developer with 5+ years of experience building scalable web applications. I love tackling challenging problems and creating intuitive user experiences.</p>
+                    
+                    <!-- Bootstrap Progress component (new feature) -->
+                    <div class="my-5">
+                        <h4 class="mb-4">Technical Expertise</h4>
+                        <div class="mb-3">
+                            <label>Frontend Development</label>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Backend Development</label>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Cloud Services</label>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-5 bg-light" id="projects">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Projects</h2>
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100 shadow-sm">
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">E-Commerce Platform</h5>
+                            <p class="card-text">A fully responsive e-commerce platform built with React, Node.js, and MongoDB.</p>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project1Modal">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100 shadow-sm">
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Task Management App</h5>
+                            <p class="card-text">A collaborative task management application with real-time updates using Socket.io.</p>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project2Modal">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100 shadow-sm">
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Weather Dashboard</h5>
+                            <p class="card-text">Interactive weather dashboard using OpenWeather API and Chart.js for visualization.</p>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project3Modal">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-5" id="skills">
+        <div class="container">
+            <h2 class="text-center mb-5">Skills & Technologies</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 skills-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-code-slash me-2"></i>Frontend</h5>
+                            <div class="accordion" id="frontendAccordion">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#frontendSkills">
+                                            View Skills
+                                        </button>
+                                    </h2>
+                                    <div id="frontendSkills" class="accordion-collapse collapse" data-bs-parent="#frontendAccordion">
+                                        <div class="accordion-body p-0 pt-2">
+                                            <ul class="list-unstyled">
+                                                <li>HTML5, CSS3, SCSS</li>
+                                                <li>JavaScript (ES6+)</li>
+                                                <li>React.js</li>
+                                                <li>Bootstrap 5</li>
+                                                <li>Vue.js</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 skills-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-server me-2"></i>Backend</h5>
+                            <div class="accordion" id="backendAccordion">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#backendSkills">
+                                            View Skills
+                                        </button>
+                                    </h2>
+                                    <div id="backendSkills" class="accordion-collapse collapse" data-bs-parent="#backendAccordion">
+                                        <div class="accordion-body p-0 pt-2">
+                                            <ul class="list-unstyled">
+                                                <li>Node.js</li>
+                                                <li>Express.js</li>
+                                                <li>Python/Django</li>
+                                                <li>REST APIs</li>
+                                                <li>GraphQL</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 skills-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-database me-2"></i>Database</h5>
+                            <div class="accordion" id="databaseAccordion">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#databaseSkills">
+                                            View Skills
+                                        </button>
+                                    </h2>
+                                    <div id="databaseSkills" class="accordion-collapse collapse" data-bs-parent="#databaseAccordion">
+                                        <div class="accordion-body p-0 pt-2">
+                                            <ul class="list-unstyled">
+                                                <li>MongoDB</li>
+                                                <li>PostgreSQL</li>
+                                                <li>MySQL</li>
+                                                <li>Redis</li>
+                                                <li>Firebase</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 skills-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-tools me-2"></i>Tools</h5>
+                            <div class="accordion" id="toolsAccordion">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#toolsSkills">
+                                            View Skills
+                                        </button>
+                                    </h2>
+                                    <div id="toolsSkills" class="accordion-collapse collapse" data-bs-parent="#toolsAccordion">
+                                        <div class="accordion-body p-0 pt-2">
+                                            <ul class="list-unstyled">
+                                                <li>Git/GitHub</li>
+                                                <li>Docker</li>
+                                                <li>AWS</li>
+                                                <li>Jenkins</li>
+                                                <li>Webpack</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="text-center mb-5">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 John Smith. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-github"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Quick Contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="quickContactForm">
+                        <div class="mb-3">
+                            <label for="quickName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="quickName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quickEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="quickEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quickMessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="quickMessage" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal fade" id="project1Modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">E-Commerce Platform</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="project1Carousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/api/placeholder/800/400" class="d-block w-100" alt="Project 1 Screenshot 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/api/placeholder/800/400" class="d-block w-100" alt="Project 1 Screenshot 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/api/placeholder/800/400" class="d-block w-100" alt="Project 1 Screenshot 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#project1Carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#project1Carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    <h4>Project Overview</h4>
+                    <p>A comprehensive e-commerce solution with features including user authentication, product catalog, shopping cart, and secure payment integration.</p>
+                    <h5>Technologies Used:</h5>
+                    <ul>
+                        <li>React.js for frontend</li>
+                        <li>Node.js/Express for backend</li>
+                        <li>MongoDB for database</li>
+                        <li>Stripe for payment processing</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-primary">View Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tooltips only after Bootstrap is loaded
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Navbar background change on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('bg-dark', 'shadow');
+                    } else {
+                        navbar.classList.remove('bg-dark', 'shadow');
+                    }
+                }
+            });
+
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            });
+
+            // Quick contact form submission
+            document.getElementById('quickContactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                modal.hide();
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
